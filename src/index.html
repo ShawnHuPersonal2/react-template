@@ -13,6 +13,18 @@
       padding-bottom: 20px;
     }
   </style>
+  <link href="./pace-theme.css" rel="stylesheet" />
+  <script src="./pace.min.js"></script>
+  <script>
+    Pace.start({
+      ajax: false,
+      elements: false,
+      document: false,
+      restartOnRequestAfter: false,
+      restartOnPushState: false,
+      eventLag: false,
+    });
+  </script>
 </head>
 <body>
 <!--[if lt IE 8]>

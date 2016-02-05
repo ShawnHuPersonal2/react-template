@@ -5,7 +5,8 @@ import configureStore from './stores';
 import App from './containers/App';
 
 const store = configureStore();
-
+if (Pace)
+  Pace.stop();
 render(
   <Provider store={store}>
     <App />
