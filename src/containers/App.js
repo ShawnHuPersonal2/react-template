@@ -28,7 +28,7 @@ App.propTypes = {
 };
 function mapStateToProps(state) {
   /* Populated by react-webpack-redux:reducer */
-  const props = {};
+  const props = state
   return props;
 }
 function mapDispatchToProps(dispatch) {

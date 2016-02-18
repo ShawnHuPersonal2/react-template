@@ -14,3 +14,4 @@ new WebpackDevServer(webpack(config), config.devServer)
   console.log('Opening your system browser...');
   open('http://localhost:' + config.port + '/webpack-dev-server/');
 });
+var compiler = webpack(config);
