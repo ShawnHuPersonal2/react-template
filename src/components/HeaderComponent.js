@@ -11,8 +11,7 @@ function Item(props) {
   switch (props.type) {
     case MenuConstants.download:
       return (
-        <NavItem eventKey={props.key}>Download
-        </NavItem>
+        <NavItem eventKey={props.key}>Download</NavItem>
       );
     case MenuConstants.feature:
       return (
@@ -67,7 +66,7 @@ function Item(props) {
 
 class HeaderComponent extends React.Component {
   render() {
-    let entries = this.props.menu.map((entry)=><NavItem eventKey={entry}><Item key={entry} type={entry}/></NavItem>);
+    let entries = this.props.menu.map((entry)=><Item key={entry} type={entry}/>);
     return (
       <div className='header-component'>
         <Navbar>
