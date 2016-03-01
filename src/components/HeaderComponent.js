@@ -62,7 +62,7 @@ function Item(props) {
       );
   }
 }
-Item();
+Item({});
 
 class HeaderComponent extends React.Component {
   render() {
