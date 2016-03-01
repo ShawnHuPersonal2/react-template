@@ -1,11 +1,11 @@
 'use strict';
 
 import React from 'react';
-import {Navbar, Nav, NavItem, Popover} from 'react-bootstrap';
+import {Navbar, Nav, NavItem } from 'react-bootstrap';
 import MenuConstants from '../constants/Menu';
 import {Link} from 'react-router';
 
-require('styles//Header.styl');
+require('styles/Header.styl');
 
 function Item(props) {
   switch (props.type) {
@@ -62,14 +62,13 @@ function Item(props) {
       );
   }
 }
-
+Item();
 
 class HeaderComponent extends React.Component {
   render() {
-    let entries = this.props.menu.map((entry)=><Item key={entry} type={entry}/>);
     return (
-      <div className='header-component'>
-        <Navbar>
+      <div>
+        <Navbar className="header-component">
           <Navbar.Header>
             <Navbar.Brand>
               <a href="#">React-Bootstrap</a>
@@ -78,7 +77,6 @@ class HeaderComponent extends React.Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
-              {entries}
             </Nav>
           </Navbar.Collapse>
         </Navbar>

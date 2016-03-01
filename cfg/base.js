@@ -25,7 +25,8 @@ module.exports = {
     extensions: [
       '',
       '.js',
-      '.jsx'
+      '.jsx',
+      '.styl'
     ],
     alias: {
       constants: srcPath + '/constants/',
@@ -63,6 +64,7 @@ module.exports = {
       {
         test: /\.styl/,
         loader: 'style-loader!css-loader!postcss-loader!stylus-loader'
+        //loader: 'css-loader!stylus-loader?paths=node_modules/bootstrap-stylus/bootstrap/'
       },
       {
         test: /\.(png|jpg|gif|woff|woff2)$/,
@@ -73,6 +75,9 @@ module.exports = {
         loader: "file-loader?name=/assests/[hash].[ext]"
       }
     ]
+  },
+  stylus:{
+      use: [require('bootstrap-styl')(),require('nib')()]
   },
   postcss: function () {
     return [];

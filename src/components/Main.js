@@ -1,5 +1,5 @@
-require('bootstrap/dist/css/bootstrap.css');
-require('styles/App.css');
+//require('bootstrap/dist/css/bootstrap.css');
+require('styles/App.styl');
 
 import React from 'react';
 
