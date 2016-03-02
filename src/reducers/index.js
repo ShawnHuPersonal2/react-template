@@ -8,7 +8,7 @@
  */
 /* Populated by react-webpack-redux:reducer */
 const reducers = {
-  menu: require('../reducers/menu.js'),
-  menu: require('../reducers/menu.js')
+  menu: require('../reducers/Menu.js'),
+  phone: require('../reducers/Phone.js')
 };
 module.exports = reducers;

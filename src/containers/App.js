@@ -4,6 +4,7 @@
  *          This modifications only run once when the generator is invoked - if
  *          you edit them, they are not updated again.
  */
+require('styles/App.styl');
 import React, {
   Component,
   PropTypes
@@ -14,8 +15,8 @@ import Main from '../components/Main';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
   render() {
-    const {actions} = this.props;
-    return <Main actions={actions}/>;
+    const {actions, phone} = this.props;
+    return <Main actions={actions} phone={phone}/>;
   }
 }
 /* Populated by react-webpack-redux:reducer

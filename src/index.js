@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './stores';
-import {Header} from './containers';
+//import {Header} from './containers';
 import App from './containers/App';
 import { combineReducers, applyMiddleware } from 'redux'
 import { Router, Route, browserHistory } from 'react-router'
@@ -17,12 +17,12 @@ const reduxRouterMiddleware = syncHistory(browserHistory);
 const store = configureStore(reducer, {menu:MenuAnonymous},applyMiddleware(reduxRouterMiddleware));
 if (window.Pace)
   window.Pace.stop();
-render(
-  <Provider store={store}>
-    <Header/>
-  </Provider>,
-  document.getElementById('header')
-);
+//render(
+//  <Provider store={store}>
+//    <Header/>
+//  </Provider>,
+//  document.getElementById('header')
+//);
 render(
   <Provider store={store}>
     <Router history={browserHistory}>

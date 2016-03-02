@@ -1,5 +1,15 @@
+@import 'nib/vendor'
+@import 'nib/positions'
+@import 'nib/overflow'
 .phonesimulator
-  border 1px dashed #f00
-  width 100%
-  height calc(100vh - 20rem)
-  background #000
+  .wrapper
+    relative: 0 0
+    width 100%
+    margin auto
+    padding-top calc(16/9 * 100%)
+    .content
+      absolute: top 0 left 0
+      width 100%
+      height 100%
+      background #aaa
+      border-radius: 25px

@@ -26,6 +26,8 @@ let config = _.merge({
   ]
 }, baseConfig);
 
+console.log(config)
+
 // Add needed loaders
 config.module.loaders.push({
   test: /\.(js|jsx)$/,

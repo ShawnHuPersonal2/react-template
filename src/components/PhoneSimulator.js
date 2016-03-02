@@ -1,10 +1,14 @@
 'use strict';
 
 import React from 'react';
+import {findDOMNode} from 'react-dom';
 
 require('styles//PhoneSimulator.styl');
+import $ from 'jquery'
 
 class PhoneSimulatorComponent extends React.Component {
+  componentDidMount() {
+  }
   render() {
     let cols = [];
     for (let i = 0; i < 12; i++) {
@@ -12,9 +16,15 @@ class PhoneSimulatorComponent extends React.Component {
     }
     return (
       <div className="phonesimulator">
-          <div className="row">
-            {cols}
+        <h1>aaa</h1>
+        <div ref="wrapper" className="wrapper">
+          <div ref="content" className="content container-fluid">
+            <h1>aaa</h1>
+            <div className="row">
+              {cols}
+            </div>
           </div>
+        </div>
       </div>
     );
   }

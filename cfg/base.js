@@ -1,4 +1,5 @@
 'use strict';
+let webpack = require('webpack');
 let path = require('path');
 let port = 8002;
 let srcPath = path.join(__dirname, '/../src');
@@ -40,10 +41,10 @@ module.exports = {
   },
   module: {
     preLoaders: [{
-        test: /\.(js|jsx)$/,
-        include: srcPath,
-        loader: 'eslint-loader'
-      }],
+      test: /\.(js|jsx)$/,
+      include: srcPath,
+      loader: 'eslint-loader'
+    }],
     loaders: [
       {
         test: /\.css$/,
@@ -76,10 +77,10 @@ module.exports = {
       }
     ]
   },
-  stylus:{
-      use: [require('bootstrap-styl')(),require('nib')()]
+  stylus: {
+    use: [require('bootstrap-styl')(), require('nib')()]
   },
   postcss: function () {
     return [];
-  }
+  },
 };
