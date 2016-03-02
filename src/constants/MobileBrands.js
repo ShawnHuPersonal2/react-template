@@ -1,6 +1,4 @@
 'use strict';
-import _ from 'lodash';
-
 const all = Object.freeze([
   {
     brand: 'iphone',
@@ -21,6 +19,6 @@ export function findByName(name){
     })
   })
   return result;
-};
+}
 export const DefaultSize = {width: 360, height: 640};
 export default all;

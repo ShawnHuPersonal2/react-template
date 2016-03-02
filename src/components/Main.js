@@ -6,10 +6,11 @@ import ScreenParameters from './main/ScreenParameters';
 
 class AppComponent extends React.Component {
   render() {
+    console.log(this.props.actions)
     return (
       <div className='index'>
         <div className='container'>
-          <ScreenParameters phone={this.props.phone}/>
+          <ScreenParameters actions={this.props.actions} phone={this.props.phone}/>
           <div className='row'>
             <div className='col-lg-6'>
               <PhoneSimulator/>
