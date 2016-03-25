@@ -20,13 +20,23 @@ let config = _.merge({
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      React: 'react',
+      Constants: 'main/constants',
+      Services: 'main/services',
+      Resources: 'main/resources',
+      Utils: 'main/utils',
+      Storage: 'main/storage',
+      nls: 'nls/ilka',
+      NotificationActions: 'main/actions/NotificationActions',
+      bootbox: 'bootbox',
+    }),
     new BowerWebpackPlugin({
       searchResolveModulesDirectories: false
     })
   ]
 }, baseConfig);
-
-console.log(config)
 
 // Add needed loaders
 config.module.loaders.push({
