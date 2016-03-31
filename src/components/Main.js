@@ -21,13 +21,12 @@ class AppComponent extends React.Component {
         helper: 'clone'
       });
     });
-    console.log(findDOMNode(this.refs.simulator.refs.content))
     $(findDOMNode(this.refs.simulator.refs.content)).droppable({
       activeClass: 'animated pulse',
       hoverClass: 'ui-drop-active',
       accept: '.usable-component',
       drop: function( event, ui ) {
-        console.log(ui)
+        ui.a;
       }
     })
   }
@@ -48,7 +47,7 @@ class AppComponent extends React.Component {
               <PhoneSimulator ref='simulator' actions={this.props.actions} phone={this.props.phone}/>
             </div>
             <div className='col-xs-6 col-sm-3 sidebar-offcanvas'>
-              <Components ref='components'/>
+              <Components ref='components' actions={this.props.actions}/>
             </div>
           </div>
         </div>

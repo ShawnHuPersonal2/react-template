@@ -4,11 +4,10 @@ import React from 'react';
 require('styles/Components.styl');
 
 class Components extends React.Component {
-  componentDidMount() {
-  }
   render() {
     return (
       <div className="components">
+          <div><button className="btn btn-default" onClick={()=>this.props.actions.push({pathname:'/component'})}>创建</button></div>
           <Component ref="panel"><div className="panel panel-default"/></Component>
       </div>
     );

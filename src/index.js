@@ -4,9 +4,9 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './stores';
 //import {Header} from './containers';
-import App from './containers/App';
+import {App,Main,Component} from './containers';
 import { combineReducers, applyMiddleware } from 'redux'
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistory, routeReducer } from 'react-router-redux'
 
 import {anonymous as MenuAnonymous} from './constants/Menu';
@@ -27,6 +27,9 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
+        <IndexRoute component={Main} />
+        <Route path="component" component={Component}>
+        </Route>
       </Route>
     </Router>
   </Provider>,
