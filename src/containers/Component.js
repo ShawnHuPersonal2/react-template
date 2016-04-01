@@ -8,7 +8,7 @@ import {setPhone} from '../actions';
 class ComponentContainer extends Component {
   render() {
     return (
-      <div>111
+      <div className="container" style={{background:'#abc',height:200}}>111
       </div>
     );
   }
