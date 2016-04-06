@@ -1,11 +1,11 @@
 import Header from './Header'
 import App from './App'
 import Main from './Main'
-import Component from './Component'
+import ComponentEditor from './ComponentEditor'
 
 export {
   Header,
   App,
   Main,
-  Component
+  ComponentEditor
 };

@@ -8,7 +8,6 @@ class App extends Component {
   render() {
 
     <Header/>;
-    console.log(this.props.location.pathname)
     return (
         <RouteTransition
           pathname={this.props.location.pathname}

@@ -4,12 +4,13 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './stores';
 //import {Header} from './containers';
-import {App,Main,Component} from './containers';
+import {App,Main,ComponentEditor} from './containers';
 import { combineReducers, applyMiddleware } from 'redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistory, routeReducer } from 'react-router-redux'
 
 import {anonymous as MenuAnonymous} from './constants/Menu';
+
 const reducer = combineReducers(Object.assign({}, reducers, {
   routing: routeReducer
 }));
@@ -28,7 +29,7 @@ render(
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Main} />
-        <Route path="component" component={Component}>
+        <Route path="component" component={ComponentEditor}>
         </Route>
       </Route>
     </Router>

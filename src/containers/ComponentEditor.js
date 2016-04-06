@@ -1,3 +1,4 @@
+require('../styles/ComponentEditor.styl');
 import React, {
   Component,
   PropTypes
@@ -5,10 +6,24 @@ import React, {
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {setPhone} from '../actions';
-class ComponentContainer extends Component {
+import Widgets from '../components/widgets/Widgets';
+import {Background, Canvas, Styles} from '../components/component-editor';
+
+class ComponentEditor extends Component {
   render() {
     return (
-      <div className="container" style={{background:'#abc',height:200}}>111
+      <div className="container component-editor">
+        <div className="row">
+          <Widgets/>
+        </div>
+        <div className="row">
+          <div className="col-xs-8">
+            <Background><Canvas/></Background>
+          </div>
+          <div className="col-xs-4">
+            <Styles/>
+          </div>
+        </div>
       </div>
     );
   }
@@ -18,7 +33,7 @@ class ComponentContainer extends Component {
  * HINT: if you adjust the initial type of your reducer, you will also have to
  *       adjust it here.
  */
-ComponentContainer.propTypes = { actions: PropTypes.object.isRequired };
+ComponentEditor.propTypes = { actions: PropTypes.object.isRequired };
 function mapStateToProps(state) {
   /* Populated by react-webpack-redux:reducer */
   const props = state;
@@ -30,4 +45,4 @@ function mapDispatchToProps(dispatch) {
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ComponentContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ComponentEditor);
