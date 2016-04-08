@@ -5,9 +5,9 @@ import React, {
 } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {setPhone} from '../actions';
+import {editorPanel} from '../actions';
 import Widgets from '../components/widgets/Widgets';
-import {Background, Canvas, Styles} from '../components/component-editor';
+import {Background, Canvas, Panel} from '../components/component-editor';
 
 class ComponentEditor extends Component {
   render() {
@@ -18,30 +18,24 @@ class ComponentEditor extends Component {
         </div>
         <div className="row">
           <div className="col-xs-8">
-            <Background><Canvas/></Background>
+            <Background><Canvas editorPanel={this.props.editorPanel.styles}/></Background>
           </div>
           <div className="col-xs-4">
-            <Styles/>
+            <Panel editorPanel={this.props.editorPanel} actions={this.props.actions}/>
           </div>
         </div>
       </div>
     );
   }
 }
-/* Populated by react-webpack-redux:reducer
- *
- * HINT: if you adjust the initial type of your reducer, you will also have to
- *       adjust it here.
- */
 ComponentEditor.propTypes = { actions: PropTypes.object.isRequired };
-function mapStateToProps(state) {
-  /* Populated by react-webpack-redux:reducer */
-  const props = state;
+function mapStateToProps({actions, editorPanel}) {
+  const props = {actions, editorPanel};
   return props;
 }
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
-  const actions = {setPhone};
+  const actions = editorPanel;
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }

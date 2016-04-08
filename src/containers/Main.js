@@ -4,7 +4,7 @@ import React, {
 } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {setPhone} from '../actions';
+import {setEditorPanel} from '../actions';
 import Main from '../components/Main';
 import { push } from 'react-router-redux'
 /* Populated by react-webpack-redux:reducer */
@@ -29,7 +29,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
-  const actions = {setPhone, push};
+  const actions = {setEditorPanel, push};
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }

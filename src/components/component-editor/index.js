@@ -1,9 +1,9 @@
 import Background from './Background'
 import Canvas from './Canvas'
-import Styles from './Styles'
+import Panel from './Panel'
 
 export {
   Background,
   Canvas,
-  Styles
+  Panel
 };

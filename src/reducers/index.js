@@ -9,6 +9,7 @@
 /* Populated by react-webpack-redux:reducer */
 const reducers = {
   menu: require('../reducers/Menu.js'),
-  phone: require('../reducers/Phone.js')
+  phone: require('../reducers/Phone.js'),
+  editorPanel: require('../reducers/EditorPanel.js')
 };
 module.exports = reducers;

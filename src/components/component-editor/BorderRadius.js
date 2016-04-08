@@ -5,10 +5,9 @@ import {Input} from 'react-bootstrap';
 class BorderRadius extends React.Component {
   render() {
     return (
-      <div className='border-radius'>
-        <h4>Border radius</h4>
-          <Input type="radio" name="border-radius-type" label="像素" standalone groupClassName="radio-wrapper"/>
-          <Input type="radio" name="border-radius-type" label="百分比" standalone groupClassName="radio-wrapper"/>
+      <div className="border-radius">
+        <Input type="radio" name="border-radius-type" label="像素" standalone groupClassName="radio-wrapper"/>
+        <Input type="radio" name="border-radius-type" label="百分比" standalone groupClassName="radio-wrapper"/>
       </div>
     );
   }
