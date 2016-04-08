@@ -22,10 +22,13 @@ export const editorPanel = {
   SET_STYLES,
   setPanelStatus,
   setStyles,
-  toggleBorderPanel: (borderExpanded) => {
+  toggleBorderPanel(borderExpanded){
     return setPanelStatus({borderExpanded: borderExpanded});
   },
-  setBorderWidth: (width) => {
+  setBorderWidth(width){
     return setStyles({borderWidth: width});
+  },
+  setBorderStyle(style){
+    return setStyles({borderStyle: style});
   }
 }

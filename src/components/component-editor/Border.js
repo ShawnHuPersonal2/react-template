@@ -7,7 +7,8 @@ const borderStyles = ['dotted','dashed','solid','double','groove','ridge','inset
 
 class Border extends React.Component {
   render() {
-    let borders = borderStyles.map((name)=><MenuItem eventKey={name}>
+    console.log(this.props.actions)
+    let borders = borderStyles.map((name)=><MenuItem key={name} eventKey={name}>
       <div style={{display: 'inline-block', width: '5em'}}>{name}</div>
       <div style={{display: 'inline-block', width: '5em', height: '1em', border: name + ' 3px black'}}/>
     </MenuItem>);
@@ -26,7 +27,8 @@ class Border extends React.Component {
             />
         </div>
         <div className="form-group">
-          <DropdownButton bsStyle={'primary'} bsSize="xsmall" title={'样式'}>
+          <DropdownButton bsStyle={'primary'} bsSize="xsmall" title={'样式'} id='border-style-selector'
+            onSelect={(e,ek)=>this.props.actions.setBorderStyle(ek)}>
             {borders}
           </DropdownButton>
         </div>
