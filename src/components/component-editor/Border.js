@@ -1,16 +1,24 @@
 'use strict';
 import React from 'react';
-import {Input, DropdownButton, MenuItem} from 'react-bootstrap';
+import {Button, DropdownButton, MenuItem, OverlayTrigger, Popover} from 'react-bootstrap';
 import Slider from '../Slider';
+import { SketchPicker }  from 'react-color';
 
 const borderStyles = ['dotted','dashed','solid','double','groove','ridge','inset','outset'];
 
 class Border extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {showColorPicker: false};
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState({showColorPicker: !this.state.showColorPicker});
+  }
   render() {
-    console.log(this.props.actions)
     let borders = borderStyles.map((name)=><MenuItem key={name} eventKey={name}>
       <div style={{display: 'inline-block', width: '5em'}}>{name}</div>
-      <div style={{display: 'inline-block', width: '5em', height: '1em', border: name + ' 3px black'}}/>
+      <div style={{display: 'inline-block', width: '5em', height: '1em', border: name + ' 3px black'}}></div>
     </MenuItem>);
     return (
       <div className="border-radius">
@@ -31,11 +39,14 @@ class Border extends React.Component {
             onSelect={(e,ek)=>this.props.actions.setBorderStyle(ek)}>
             {borders}
           </DropdownButton>
+
+          <OverlayTrigger trigger="click" rootClose placement="left" overlay={
+            <Popover><SketchPicker type="sketch" /></Popover>
+          }>
+            <Button bsStyle='primary' bsSize='xsmall' onClick={ this.handleClick }
+                    style={{background:this.props.editorPanel.styles.borderColor}}>颜色</Button>
+          </OverlayTrigger>
         </div>
-        <Input type="select" label="宽度" placeholder="像素">
-          <option value="1">select</option>
-          <option value="2">...</option>
-        </Input>
       </div>
     );
   }

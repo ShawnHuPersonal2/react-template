@@ -87,4 +87,4 @@ Nouislider.propTypes = {
   ])
 };
 
-module.exports = Nouislider;
+export default Nouislider;

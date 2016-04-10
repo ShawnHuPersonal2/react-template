@@ -79,6 +79,7 @@
     "nouislider": "github:leongersen/noUiSlider",
     "react": "^0.14.8",
     "react-bootstrap": "^0.28.5",
+    "react-color": "^2.0.0",
     "react-dom": "^0.14.0",
     "react-motion": "^0.4.2",
     "react-redux": "^4.2.1",
