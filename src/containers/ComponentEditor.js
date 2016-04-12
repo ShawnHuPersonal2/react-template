@@ -17,10 +17,10 @@ class ComponentEditor extends Component {
           <Widgets/>
         </div>
         <div className="row">
-          <div className="col-xs-8">
-            <Background><Canvas editorPanel={this.props.editorPanel.styles}/></Background>
+          <div className="col-xs-offset-1 col-xs-6">
+            <Background><Canvas styles={this.props.editorPanel.styles}/></Background>
           </div>
-          <div className="col-xs-4">
+          <div className="col-xs-offset-1 col-xs-4">
             <Panel editorPanel={this.props.editorPanel} actions={this.props.actions}/>
           </div>
         </div>

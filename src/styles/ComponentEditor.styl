@@ -9,3 +9,20 @@
       div.radio-wrapper
         display inline-block
         margin-right 1em
+      .quick
+        .ratio
+          .types
+            &>div
+              display inline-block; margin-right:1em
+            input
+              top 1em
+        .unit
+          .types
+            &>div
+              display inline-block; margin-right:1em
+  .editor-background
+    position relative; margin 5px; border solid 1px transparent //it's wired that without this border the position&height will be quite different
+    &:before
+      content: ""; display: block; margin-top: 100%;
+    .wrapper
+      position absolute; top 0; left 0; width 100%; height 100%

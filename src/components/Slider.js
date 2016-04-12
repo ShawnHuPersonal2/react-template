@@ -1,6 +1,7 @@
 import React from 'react';
 import nouislider from 'nouislider';
 require('nouislider/src/nouislider.css')
+require('nouislider/src/nouislider.pips.css')
 class Nouislider extends React.Component {
   componentDidMount() {
     if (this.props.disabled) this.sliderContainer.setAttribute('disabled', true);

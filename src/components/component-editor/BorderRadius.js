@@ -3,8 +3,9 @@ import _ from 'lodash';
 import React from 'react';
 import {Tabs, Tab, Input, Button, DropdownButton, MenuItem, OverlayTrigger, Popover} from 'react-bootstrap';
 import Slider from '../Slider';
-import CrossSliders from '../CrossSliders';
+import QuarterEllipse from '../QuarterEllipse';
 import { SketchPicker }  from 'react-color';
+import {borderRadiusFunc} from 'model';
 
 const borderStyles = ['dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset'];
 function getBorders(keyPrefix) {
@@ -77,33 +78,64 @@ class BorderRadius extends React.Component {
     super(props);
     this.state = {showColorPicker: false};
     this.onColorSelected = this.onColorSelected.bind(this);
+    this.onRatioSelected = this.onRatioSelected.bind(this);
+    this.onUnitSelected = this.onUnitSelected.bind(this);
+    this.onValueSelected = this.onValueSelected.bind(this);
   }
   onColorSelected(color) {
     this.props.actions.setBorderColor(color.rgb);
   }
+  onRatioSelected(e) {
+    this.props.actions.setBorderRadiusRatio(parseFloat(e.target.value));
+  }
+  onUnitSelected(e) {
+    this.props.actions.setBorderRadiusUnit(e.target.value);
+  }
+  onValueSelected(values) {
+    this.props.actions.setBorderRadiusValue(parseInt(values[0]));
+  }
   render() {
     let styles = this.props.editorPanel.styles;
+    let { ratio, unit, value } = styles.borderRadius;
     return (
       <div className='border-radius'>
-        <div className='result text-center'><pre>{styles.borderRadius + 'px ' + styles.borderStyle + ' ' + styles.borderColor}</pre></div>
+        <div className='result text-center'><pre>{borderRadiusFunc.toString(styles.borderRadius)}</pre></div>
 
         <Tabs defaultActiveKey={1}>
-          <Tab eventKey={1} title="所有边框">
-            <div className='all'>
-              <CrossSliders vertical={{range: {min: 0, max: 100}, start:[1], step:1, connect:'lower'}}
-                            horizontal={{range: {min: 0, max: 100}, start:[1], step:1, connect:'lower'}}/>
+          <Tab eventKey={1} title="快速配置" className='quick'>
+            <div className='ratio'>
+              <label>形状</label>
+              <div className='types'>
+                <Input type="radio" name="borderRadiusRadio" value={1} checked={ratio==1} onChange={this.onRatioSelected}
+                       label={<span>1:1 <QuarterEllipse size='2' unit='em' ratio={1}/></span>} standalone readonly/>
+                <Input type="radio" name="borderRadiusRadio" value={2}  checked={ratio==2} onChange={this.onRatioSelected}
+                       label={<span>2:1 <QuarterEllipse size='2' unit='em' ratio={2}/></span>} standalone readonly/>
+                <Input type="radio" name="borderRadiusRadio" value={0.5}  checked={ratio==0.5} onChange={this.onRatioSelected}
+                       label={<span>1:2 <QuarterEllipse size='2' unit='em' ratio={0.5}/></span>} standalone readonly/>
+              </div>
+            </div>
+            <div className='unit'>
+              <label>单位</label>
+              <div className='types'>
+                <Input type="radio" name="borderRadiusUnit" value={'%'} checked={unit==='%'} onChange={this.onUnitSelected}
+                       label={'% 百分比'} standalone readonly/>
+                <Input type="radio" name="borderRadiusUnit" value={'px'}  checked={unit==='px'} onChange={this.onUnitSelected}
+                       label={'px'} standalone readonly/>
+              </div>
+            </div>
+            <div className='unit'>
+              <label>数值</label>
+              <Slider
+                range={{min: 0, max: 100}}
+                start={[value]}
+                step={1}
+                connect='lower'
+                onChange={this.onValueSelected}
+                />
             </div>
           </Tab>
-          <Tab eventKey={2} title="分别设置">
+          <Tab eventKey={2} title="高级">
             <div className='border-separated'>
-              <label>上边</label>
-              <BorderRadiusSettings side='top' {...this.props}/>
-              <label>右边</label>
-              <BorderRadiusSettings side='right' {...this.props}/>
-              <label>下边</label>
-              <BorderRadiusSettings side='bottom' {...this.props}/>
-              <label>左边</label>
-              <BorderRadiusSettings side='left' {...this.props}/>
             </div>
           </Tab>
         </Tabs>

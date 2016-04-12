@@ -86,7 +86,7 @@ class Border extends React.Component {
     let styles = this.props.editorPanel.styles;
     return (
       <div className='border'>
-        <div className='result text-center'><pre>{styles.borderWidth + 'px ' + styles.borderStyle + ' ' + styles.borderColor}</pre></div>
+        <div className='result text-center'><pre>{styles.borderWidth + ' ' + styles.borderStyle + ' ' + styles.borderColor}</pre></div>
 
         <Tabs defaultActiveKey={1}>
           <Tab eventKey={1} title="所有边框">

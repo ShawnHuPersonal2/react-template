@@ -8,7 +8,6 @@ export function setPhone(phone) {
 
 
 
-
 const SET_PANEL_STATUS = 'SET_PANEL_STATUS';
 const SET_STYLES = 'SET_STYLES';
 
@@ -89,6 +88,57 @@ export const editorPanel = {
           borderRightColor: null,
           borderBottomColor: null,
           borderLeftColor: null
+        });
+    }
+  },
+  setBorderRadiusRatio(ratio, side){
+    switch(side) {
+      case 'topLeft':
+        return setStyles({borderRadius: {ratioTopLeft: ratio}});
+      case 'topRight':
+        return setStyles({borderRadius: {ratioTopRight: ratio}});
+      case 'bottomRight':
+        return setStyles({borderRadius: {ratioBottomRight: ratio}});
+      case 'bottomLeft':
+        return setStyles({borderRadius: {ratioBottomLeft: ratio}});
+      default:
+        return setStyles({
+          borderRadius: {
+            ratio: ratio,
+            ratioTopLeft: null,
+            ratioTopRight: null,
+            ratioBottomRight: null,
+            ratioBottomLeft: null
+          }
+        });
+    }
+  },
+  setBorderRadiusUnit(unit) {
+    return setStyles({
+      borderRadius: {
+        unit: unit
+      }
+    });
+  },
+  setBorderRadiusValue(value, side) {
+    switch(side) {
+      case 'topLeft':
+        return setStyles({borderRadius: {valueTopLeft: value}});
+      case 'topRight':
+        return setStyles({borderRadius: {valueTopRight: value}});
+      case 'bottomRight':
+        return setStyles({borderRadius: {valueBottomRight: value}});
+      case 'bottomLeft':
+        return setStyles({borderRadius: {valueBottomLeft: value}});
+      default:
+        return setStyles({
+          borderRadius: {
+            value: value,
+            valueTopLeft: null,
+            valueTopRight: null,
+            valueBottomRight: null,
+            valueBottomLeft: null
+          }
         });
     }
   }

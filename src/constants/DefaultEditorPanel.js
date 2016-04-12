@@ -8,9 +8,14 @@ const defaultEditorPanel = Object.freeze(
       borderWidth: 1,
       borderStyle: 'solid',
       borderColor: 'black',
-      padding: '1em',
-      borderRadius: '10px / 5px',
-      position: 'relative'
+      padding: '25%',
+      height: '100%',
+      position: 'relative',
+      borderRadius: {
+        ratio: 1,
+        unit: 'px',
+        value: 10
+      }
     }
   }
 );
