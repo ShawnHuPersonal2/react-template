@@ -1,7 +1,7 @@
 'use strict';
 import _ from 'lodash';
 import React from 'react';
-import {Tabs, Tab, Button, DropdownButton, MenuItem, OverlayTrigger, Popover, Well} from 'react-bootstrap';
+import {Tabs, Tab, Button, DropdownButton, MenuItem, OverlayTrigger, Popover} from 'react-bootstrap';
 import Slider from '../Slider';
 import { SketchPicker }  from 'react-color';
 
@@ -67,6 +67,12 @@ class BorderSettings extends React.Component {
   }
 }
 
+BorderSettings.propTypes = {
+  actions: React.PropTypes.object.isRequired,
+  'actions.setBorderColor': React.PropTypes.func,
+  side: React.PropTypes.string,
+  editorPanel: React.PropTypes.object.isRequired
+}
 class Border extends React.Component {
   constructor(props) {
     super(props);
@@ -108,4 +114,8 @@ class Border extends React.Component {
 
 Border.displayName = 'Border';
 
+Border.propTypes = {
+  actions: React.PropTypes.object.isRequired,
+  editorPanel: React.PropTypes.object.isRequired
+}
 export default Border;

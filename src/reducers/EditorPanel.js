@@ -6,7 +6,7 @@ const initialState = Object.assign({}, DefaultEditorPanel);
 module.exports = (state = initialState, action = {type:null}) => {
   let result;
   switch (action.type) {
-    case editorPanel.SET_STYLES:
+    case editorPanel.SET_STYLES: {
       let newStyles = Object.assign({}, state.styles, action.styles);
       result = Object.assign({}, state, {styles: newStyles});
       for (var key in result.styles) { //remove empty styles. there seems to be a bug with changing styles
@@ -14,12 +14,15 @@ module.exports = (state = initialState, action = {type:null}) => {
           delete result.styles[key];
       }
       break;
-    case editorPanel.SET_PANEL_STATUS:
+    }
+    case editorPanel.SET_PANEL_STATUS: {
       let newPanelStatus = Object.assign({}, state.panelStatus, action.panelStatus);
       result = Object.assign({}, state, {panelStatus: newPanelStatus});
       break;
-    default:
+    }
+    default: {
       result = state
+    }
   }
   return result;
 };

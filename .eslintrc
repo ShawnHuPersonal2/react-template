@@ -3,10 +3,7 @@
   "plugins": [
     "react"
   ],
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
-  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
   "env": {
     "browser": true,
     "amd": true,
@@ -25,6 +22,8 @@
     "no-trailing-spaces": [1, { "skipBlankLines": true }],
     "no-unreachable": 1,
     "no-alert": 0,
-    "react/jsx-uses-react": 1
+    "react/jsx-uses-react": 0,
+    "react/prop-types": 0,
+    "react/react-in-jsx-scope": 0
   }
 }

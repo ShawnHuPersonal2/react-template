@@ -28,4 +28,9 @@ class CollapsiblePanel extends React.Component {
 
 CollapsiblePanel.displayName = 'CollapsiblePanel';
 
+CollapsiblePanel.propTypes = {
+  text: React.PropTypes.string,
+  onToggle: React.PropTypes.func,
+  expanded: React.PropTypes.bool
+}
 export default CollapsiblePanel;

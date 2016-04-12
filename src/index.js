@@ -1,5 +1,4 @@
 const reducers = require('./reducers');
-import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './stores';
@@ -7,26 +6,25 @@ import configureStore from './stores';
 import {App,Main,ComponentEditor} from './containers';
 import { combineReducers, applyMiddleware } from 'redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-import { syncHistory, routeReducer } from 'react-router-redux'
+import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux'
 
 import {anonymous as MenuAnonymous} from './constants/Menu';
 
-const reducer = combineReducers(Object.assign({}, reducers, {
-  routing: routeReducer
-}));
-const reduxRouterMiddleware = syncHistory(browserHistory);
-const store = configureStore(reducer, {menu:MenuAnonymous},applyMiddleware(reduxRouterMiddleware));
 if (window.Pace)
   window.Pace.stop();
-//render(
-//  <Provider store={store}>
-//    <Header/>
-//  </Provider>,
-//  document.getElementById('header')
-//);
+
+const reducer = combineReducers(Object.assign({}, reducers, {
+  routing: routerReducer
+}));
+
+const middleware = routerMiddleware(browserHistory)
+const store = configureStore(reducer, {menu:MenuAnonymous}, applyMiddleware(middleware));
+
+const history = syncHistoryWithStore(browserHistory, store)
+
 render(
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={Main} />
         <Route path="component" component={ComponentEditor}>

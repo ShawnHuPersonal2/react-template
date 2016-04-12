@@ -1,7 +1,7 @@
 'use strict';
 import _ from 'lodash';
 import React from 'react';
-import {Tabs, Tab, Input, Button, DropdownButton, MenuItem, OverlayTrigger, Popover, Well} from 'react-bootstrap';
+import {Tabs, Tab, Input, Button, DropdownButton, MenuItem, OverlayTrigger, Popover} from 'react-bootstrap';
 import Slider from '../Slider';
 import CrossSliders from '../CrossSliders';
 import { SketchPicker }  from 'react-color';

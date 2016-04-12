@@ -1,5 +1,5 @@
 require('../styles/ComponentEditor.styl');
-import React, {
+import {
   Component,
   PropTypes
 } from 'react';

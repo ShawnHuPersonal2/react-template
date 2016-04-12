@@ -41,6 +41,7 @@ class Nouislider extends React.Component {
 }
 
 Nouislider.propTypes = {
+  style: React.PropTypes.object,
   // http://refreshless.com/nouislider/slider-options/#section-animate
   animate: React.PropTypes.bool,
   // http://refreshless.com/nouislider/behaviour-option/
