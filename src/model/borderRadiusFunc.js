@@ -1,5 +1,5 @@
 import _ from 'lodash';
-function toCssString({value, ratio, unit}) {
+function toCssString({value, ratio, unit}, slash) {
   let x = value, y = value / borderRadiusFunc.convertRatioToDouble(ratio);
   if (unit === '%') {
     x = x + '%';
@@ -8,7 +8,7 @@ function toCssString({value, ratio, unit}) {
     x += unit;
     y += unit;
   }
-  return x + ' / ' + y;
+  return x + (slash ? ' / ' : ' ') + y;
 }
 
 function getValueRatioUnit(borderRadius, side) {
@@ -29,7 +29,7 @@ function getValueRatioUnit(borderRadius, side) {
       value = sideValue;
   }
   result = {};
-  result[_.camelCase('border ' + (side ? side : '') + ' radius' )] = toCssString({value: value, ratio: ratio, unit: unit});
+  result[_.camelCase('border ' + (side ? side : '') + ' radius' )] = toCssString({value: value, ratio: ratio, unit: unit}, side == null);
   return result;
 }
 

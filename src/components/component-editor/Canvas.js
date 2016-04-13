@@ -1,6 +1,7 @@
 'use strict';
 import React from 'react';
-import {borderRadiusFunc} from 'model'
+import {findDOMNode} from 'react-dom';
+import {borderRadiusFunc, jssFunc} from 'model'
 
 function replaceBorderRadius(styles) {
   let borderRadius = borderRadiusFunc.process(styles.borderRadius);
@@ -8,11 +9,19 @@ function replaceBorderRadius(styles) {
 }
 
 class Canvas extends React.Component {
-  render() {
+  componentDidMount() {
     let styles = replaceBorderRadius(this.props.styles);
-    console.log(styles)
+    let css = jssFunc.toPlainCss(styles);
+    findDOMNode(this.refs.target).setAttribute('style', css);
+  }
+  componentDidUpdate() {
+    let styles = replaceBorderRadius(this.props.styles);
+    let css = jssFunc.toPlainCss(styles);
+    findDOMNode(this.refs.target).setAttribute('style', css);
+  }
+  render() {
     return (
-      <div className="editor-canvas" style={styles}>
+      <div className="editor-canvas" ref='target'>
         ddfafdsa
       </div>
     );
