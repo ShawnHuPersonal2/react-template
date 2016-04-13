@@ -5,10 +5,14 @@
 
 .component-editor
   .editor-styles
+    .tab-content
+      padding-top 1em
     .border-radius
-      div.radio-wrapper
-        display inline-block
-        margin-right 1em
+      .unit
+        .types
+          display inline-block; margin-left 2em
+          &>div
+            display inline-block; margin-right:1em
       .quick
         .ratio
           .types
@@ -16,10 +20,10 @@
               display inline-block; margin-right:1em
             input
               top 1em
-        .unit
-          .types
-            &>div
-              display inline-block; margin-right:1em
+      .advanced
+        .border-radius-separated
+          &>div
+            margin-bottom 1em;
   .editor-background
     position relative; margin 5px; border solid 1px transparent //it's wired that without this border the position&height will be quite different
     &:before

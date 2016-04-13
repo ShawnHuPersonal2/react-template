@@ -12,7 +12,7 @@ const defaultEditorPanel = Object.freeze(
       height: '100%',
       position: 'relative',
       borderRadius: {
-        ratio: 1,
+        ratio: 0,
         unit: 'px',
         value: 10
       }

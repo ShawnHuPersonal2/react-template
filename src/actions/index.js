@@ -94,21 +94,21 @@ export const editorPanel = {
   setBorderRadiusRatio(ratio, side){
     switch(side) {
       case 'topLeft':
-        return setStyles({borderRadius: {ratioTopLeft: ratio}});
+        return setStyles({borderRadius: {topLeftRatio: ratio}});
       case 'topRight':
-        return setStyles({borderRadius: {ratioTopRight: ratio}});
+        return setStyles({borderRadius: {topRightRatio: ratio}});
       case 'bottomRight':
-        return setStyles({borderRadius: {ratioBottomRight: ratio}});
+        return setStyles({borderRadius: {bottomRightRatio: ratio}});
       case 'bottomLeft':
-        return setStyles({borderRadius: {ratioBottomLeft: ratio}});
+        return setStyles({borderRadius: {bottomLeftRatio: ratio}});
       default:
         return setStyles({
           borderRadius: {
             ratio: ratio,
-            ratioTopLeft: null,
-            ratioTopRight: null,
-            ratioBottomRight: null,
-            ratioBottomLeft: null
+            topLeftRatio: null,
+            topRightRatio: null,
+            bottomRightRatio: null,
+            bottomLeftRatio: null
           }
         });
     }
@@ -123,21 +123,21 @@ export const editorPanel = {
   setBorderRadiusValue(value, side) {
     switch(side) {
       case 'topLeft':
-        return setStyles({borderRadius: {valueTopLeft: value}});
+        return setStyles({borderRadius: {topLeftValue: value}});
       case 'topRight':
-        return setStyles({borderRadius: {valueTopRight: value}});
+        return setStyles({borderRadius: {topRightValue: value}});
       case 'bottomRight':
-        return setStyles({borderRadius: {valueBottomRight: value}});
+        return setStyles({borderRadius: {bottomRightValue: value}});
       case 'bottomLeft':
-        return setStyles({borderRadius: {valueBottomLeft: value}});
+        return setStyles({borderRadius: {bottomLeftValue: value}});
       default:
         return setStyles({
           borderRadius: {
             value: value,
-            valueTopLeft: null,
-            valueTopRight: null,
-            valueBottomRight: null,
-            valueBottomLeft: null
+            topLeftValue: null,
+            topRightValue: null,
+            bottomRightValue: null,
+            bottomLeftValue: null
           }
         });
     }
