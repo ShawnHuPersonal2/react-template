@@ -5,17 +5,19 @@ const defaultEditorPanel = Object.freeze(
       borderExpanded: false
     },
     styles: {
-      borderWidth: 1,
-      borderStyle: 'solid',
-      borderColor: 'black',
-      padding: '25%',
-      height: '100%',
-      position: 'relative',
+      border: {
+        width: 1,
+        style: 'solid',
+        color: 'black'
+      },
       borderRadius: {
         ratio: 0,
         unit: 'px',
         value: 10
-      }
+      },
+      padding: '25%',
+      height: '100%',
+      position: 'relative'
     }
   }
 );

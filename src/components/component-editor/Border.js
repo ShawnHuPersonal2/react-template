@@ -4,6 +4,8 @@ import React from 'react';
 import {Tabs, Tab, Button, DropdownButton, MenuItem, OverlayTrigger, Popover} from 'react-bootstrap';
 import Slider from '../Slider';
 import { SketchPicker }  from 'react-color';
+import {borderFunc, jssFunc} from 'model';
+import tinycolor from 'tinycolor2';
 
 const borderStyles = ['dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset'];
 function getBorders(keyPrefix) {
@@ -22,29 +24,28 @@ class BorderSettings extends React.Component {
     this.onStyleSelected = this.onStyleSelected.bind(this);
   }
   onColorSelected(color) {
-    this.props.actions.setBorderColor(color.rgb, this.props.side);
+    this.props.actions.setBorder(color.rgb, 'color', this.props.side);
   }
   onWidthSelected(values) {
-    this.props.actions.setBorderWidth(parseInt(values[0]), this.props.side);
+    this.props.actions.setBorder(parseInt(values[0]), 'width', this.props.side);
   }
   onStyleSelected(e, style) {
-    this.props.actions.setBorderStyle(style, this.props.side);
+    this.props.actions.setBorder(style, 'style', this.props.side);
   }
   render() {
-    let styles = this.props.editorPanel.styles;
-    let side = _.capitalize(this.props.side);
-    let borderWidth = styles['border' + side + 'Width'] ? styles['border' + side + 'Width'] : styles['borderWidth'];
-    //let borderStyle = styles['border' + side + 'Style'] ? styles['border' + side + 'Style'] : styles['borderStyle'];
-    let borderColor = styles['border' + side + 'Color'] ? styles['border' + side + 'Color'] : styles['borderColor'];
+    let border = this.props.editorPanel.styles.border;
+    let side = this.props.side;
+    let {width, color} = _.merge({}, border, border[side]);
+    let colorRgb = tinycolor(color).toRgbString();
     return (
       <div className={'row border-settings' + side}>
         <div className='col-xs-8'>
           <Slider
             range={{min: 0, max: 100}}
-            start={[borderWidth]}
+            start={[width]}
             step={1}
             connect='lower'
-            style={{background:this.props.editorPanel.styles.borderColor}}
+            style={{background:colorRgb}}
             onChange={this.onWidthSelected}
             />
         </div>
@@ -55,11 +56,11 @@ class BorderSettings extends React.Component {
           </DropdownButton>
           <OverlayTrigger trigger='click' rootClose placement='left' overlay={
               <Popover id='border-color-picker'><SketchPicker
-              color={ borderColor }
+              color={ color }
               onChangeComplete={this.onColorSelected} type='sketch' /></Popover>
             }>
             <Button bsStyle='primary' bsSize='xsmall'
-                    style={{background:borderColor}}>颜色</Button>
+                    style={{background:colorRgb}}>颜色</Button>
           </OverlayTrigger>
         </div>
       </div>
@@ -73,28 +74,27 @@ BorderSettings.propTypes = {
   side: React.PropTypes.string,
   editorPanel: React.PropTypes.object.isRequired
 }
+
+
 class Border extends React.Component {
   constructor(props) {
     super(props);
     this.state = {showColorPicker: false};
-    this.onColorSelected = this.onColorSelected.bind(this);
-  }
-  onColorSelected(color) {
-    this.props.actions.setBorderColor(color.rgb);
   }
   render() {
-    let styles = this.props.editorPanel.styles;
+    let border = this.props.editorPanel.styles.border;
+    let css = borderFunc.process(border);
     return (
       <div className='border'>
-        <div className='result text-center'><pre>{styles.borderWidth + ' ' + styles.borderStyle + ' ' + styles.borderColor}</pre></div>
+        <div className='result text-center'><pre>{jssFunc.toPlainCss(css)}</pre></div>
 
         <Tabs defaultActiveKey={1}>
-          <Tab eventKey={1} title="所有边框">
+          <Tab eventKey={1} title='所有边框'>
             <div className='all'>
-              <BorderSettings side='' {...this.props}/>
+              <BorderSettings {...this.props}/>
             </div>
           </Tab>
-          <Tab eventKey={2} title="分别设置">
+          <Tab eventKey={2} title='分别设置'>
             <div className='border-separated'>
               <label>上边</label>
               <BorderSettings side='top' {...this.props}/>

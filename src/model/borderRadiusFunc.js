@@ -1,6 +1,6 @@
 import _ from 'lodash';
 function toCssString({value, ratio, unit}, slash) {
-  let x = value, y = value / borderRadiusFunc.convertRatioToDouble(ratio);
+  let x = value, y = _.round(value / borderRadiusFunc.convertRatioToDouble(ratio), 0);
   if (unit === '%') {
     x = x + '%';
     y = y + '%';
@@ -13,23 +13,17 @@ function toCssString({value, ratio, unit}, slash) {
 
 function getValueRatioUnit(borderRadius, side) {
   let result;
-  let unit = borderRadius.unit;
-  let ratio = borderRadius.ratio;
-  let value = borderRadius.value;
+  let values = {unit: borderRadius.unit, ratio: borderRadius.ratio, value: borderRadius.value};
   if (side) {
-    let sideRatio = borderRadius[side + 'Ratio'];
-    let sideValue = borderRadius[side + 'Value'];
-    if (sideRatio == null && sideValue == null) // return undefined if this side has no definition
+    if (borderRadius[side] == null)
       return;
-    if (value == sideValue && ratio == sideRatio) // return undefined if this side's no different than all
+    let sideValues = _.merge({}, values, borderRadius[side]);
+    if (_.isEqual(sideValues, values))
       return;
-    if (sideRatio)
-      ratio = sideRatio;
-    if (sideValue)
-      value = sideValue;
+    values = sideValues;
   }
   result = {};
-  result[_.camelCase('border ' + (side ? side : '') + ' radius' )] = toCssString({value: value, ratio: ratio, unit: unit}, side == null);
+  result[_.camelCase('border ' + (side ? side : '') + ' radius' )] = toCssString(values, side == null);
   return result;
 }
 

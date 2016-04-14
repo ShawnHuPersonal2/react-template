@@ -4,21 +4,34 @@ import {editorPanel} from '../actions';
 
 const defaultEditorPanel = Object.assign({}, DefaultEditorPanel);
 
+function pruneEmpty(obj) {
+  return function prune(current) {
+    _.forOwn(current, function (value, key) {
+      if (_.isUndefined(value) || _.isNull(value) || _.isNaN(value) ||
+        (_.isString(value) && _.isEmpty(value)) ||
+        (_.isObject(value) && _.isEmpty(prune(value)))) {
+
+        delete current[key];
+      }
+    });
+    // remove any leftover undefined values from the delete
+    // operation on an array
+    if (_.isArray(current)) _.pull(current, undefined);
+
+    return current;
+
+  }(_.cloneDeep(obj));  // Do not modify the original object, create a clone instead
+}
+
 module.exports = (statePiece = defaultEditorPanel, action = {type:null}) => {
   let result;
   switch (action.type) {
     case editorPanel.SET_STYLES: {
-      let newStyles = _.merge({}, statePiece.styles, action.styles);
-      result = Object.assign({}, statePiece, {styles: newStyles});
-      for (let key in result.styles) { //remove empty styles. there seems to be a bug with changing styles
-        if (result.styles[key] == null)
-          delete result.styles[key];
-      }
+      result = pruneEmpty(_.merge({}, statePiece, {styles: action.styles}));
       break;
     }
     case editorPanel.SET_PANEL_STATUS: {
-      let newPanelStatus = Object.assign({}, statePiece.panelStatus, action.panelStatus);
-      result = Object.assign({}, statePiece, {panelStatus: newPanelStatus});
+      result = pruneEmpty(Object.assign({}, statePiece, {panelStatus: action.panelStatus}));
       break;
     }
     default: {

@@ -1,4 +1,5 @@
 'use strict';
+import _ from 'lodash';
 import React from 'react';
 import {Tabs, Tab, Input} from 'react-bootstrap';
 import Slider from '../Slider';
@@ -12,17 +13,15 @@ class BorderRadiusSettings extends React.Component {
     this.onValueSelected = this.onValueSelected.bind(this);
   }
   onRatioSelected(values) {
-    this.props.actions.setBorderRadiusRatio(parseInt(values[0]), this.props.side);
+    this.props.actions.setBorderRadius(parseInt(values[0]), 'ratio', this.props.side);
   }
   onValueSelected(values) {
-    this.props.actions.setBorderRadiusValue(parseInt(values[0]), this.props.side);
+    this.props.actions.setBorderRadius(parseInt(values[0]),'value', this.props.side);
   }
   render() {
     let borderRadius = this.props.editorPanel.styles.borderRadius;
     let side = this.props.side;
-    let { unit } = borderRadius;
-    let ratio = borderRadius[side + 'Ratio'] ? borderRadius[side + 'Ratio'] : borderRadius['ratio'];
-    let value = borderRadius[side + 'Value'] ? borderRadius[side + 'Value'] : borderRadius['value'];
+    let {ratio, unit, value} = _.merge({}, borderRadius, borderRadius[side]);
     return (
       <div className={'border-radius-settings' + side}>
         <div className='ratio'>
