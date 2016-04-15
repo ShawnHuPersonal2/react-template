@@ -46,6 +46,7 @@ class BorderSettings extends React.Component {
             step={1}
             connect='lower'
             style={{background:colorRgb}}
+            onUpdate={(values)=>this.props.updateIndicatorRef().innerHTML=parseInt(values[0])}
             onChange={this.onWidthSelected}
             />
         </div>
@@ -91,19 +92,20 @@ class Border extends React.Component {
         <Tabs defaultActiveKey={1}>
           <Tab eventKey={1} title='所有边框'>
             <div className='all'>
-              <BorderSettings {...this.props}/>
+              <label>宽度 <span ref='widthValue'></span></label>
+              <BorderSettings {...this.props} updateIndicatorRef={()=>this.refs.widthValue}/>
             </div>
           </Tab>
           <Tab eventKey={2} title='分别设置'>
             <div className='border-separated'>
-              <label>上边</label>
-              <BorderSettings side='top' {...this.props}/>
-              <label>右边</label>
-              <BorderSettings side='right' {...this.props}/>
-              <label>下边</label>
-              <BorderSettings side='bottom' {...this.props}/>
-              <label>左边</label>
-              <BorderSettings side='left' {...this.props}/>
+              <label>上边 <span ref='topWidthValue'></span></label>
+              <BorderSettings side='top' {...this.props} updateIndicatorRef={()=>this.refs.topWidthValue}/>
+              <label>右边 <span ref='rightWidthValue'></span></label>
+              <BorderSettings side='right' {...this.props} updateIndicatorRef={()=>this.refs.rightWidthValue}/>
+              <label>下边 <span ref='bottomWidthValue'></span></label>
+              <BorderSettings side='bottom' {...this.props} updateIndicatorRef={()=>this.refs.bottomWidthValue}/>
+              <label>左边 <span ref='leftWidthValue'></span></label>
+              <BorderSettings side='left' {...this.props} updateIndicatorRef={()=>this.refs.leftWidthValue}/>
             </div>
           </Tab>
         </Tabs>
