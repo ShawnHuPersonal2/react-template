@@ -15,8 +15,6 @@ const defaultEditorPanel = Object.freeze(
         unit: 'px',
         value: 10
       },
-      padding: '25%',
-      height: '100%',
       position: 'relative'
     }
   }

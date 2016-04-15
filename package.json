@@ -84,6 +84,7 @@
     "react-bootstrap": "^0.28.5",
     "react-color": "^2.0.0",
     "react-dom": "^15.0.1",
+    "react-medium-editor": "^1.6.3",
     "react-motion": "^0.4.2",
     "react-redux": "^4.4.4",
     "react-router": "^2.0.0",
